@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        IMAGE_NAME = 'sajidcurious/ci-cd-sample:latest'
+        IMAGE_NAME = 'sajidcurious/ci-cd-sample'
     }
     stages {
         stage('Build') {
@@ -14,9 +14,11 @@ pipeline {
         stage('Push') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-credentials') {
-                        docker.image("${IMAGE_NAME}").push()
-                    }
+                    // Docker login (using Jenkins environment variables)
+                    sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+
+                    // Push the Docker image to Docker Hub
+                    docker.image("${IMAGE_NAME}").push()
                 }
             }
         }

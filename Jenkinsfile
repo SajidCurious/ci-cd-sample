@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        IMAGE_NAME = 'sajidcurious/ci-cd-sample'
+        IMAGE_NAME = 'sajidcurious/ci-cd-sample:latest'
     }
     stages {
         stage('Build') {
@@ -18,7 +18,7 @@ pipeline {
                     sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
 
                     // Push the Docker image to Docker Hub
-                    docker.image("${IMAGE_NAME}:latest").push()
+                    docker.image("${IMAGE_NAME}").push()
                 }
             }
         }

@@ -18,7 +18,7 @@ pipeline {
                 script {
                     // Docker login with credentials from Jenkins
                     echo "Logging in to Docker Hub..."
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-credentials') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-cred') {
                         // Push the Docker image to Docker Hub
                         echo "Pushing the image to Docker Hub..."
                         docker.image("${IMAGE_NAME}").push()

@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        IMAGE_NAME = 'sajidcurious/ci-cd-sample'
+        IMAGE_NAME = 'sajidcurious/ci-cd-sample:latest'
     }
     stages {
         stage('Build') {

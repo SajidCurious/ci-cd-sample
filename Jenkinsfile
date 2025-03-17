@@ -18,7 +18,7 @@ pipeline {
                     sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
 
                     // Push the Docker image to Docker Hub
-                    docker.image("${IMAGE_NAME}").push()
+                    docker.image("${IMAGE_NAME}:latest").push()
                 }
             }
         }
